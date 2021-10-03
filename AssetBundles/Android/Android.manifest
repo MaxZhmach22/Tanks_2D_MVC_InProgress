@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 2906781950
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: buttonondownloadchange
+      Dependencies: {}
