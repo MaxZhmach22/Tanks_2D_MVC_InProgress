@@ -21,6 +21,8 @@ namespace Tanks
         private Vector3 _tempPosition;
         private Vector3 _direction;
         [SerializeField] private float _speed;
+        [SerializeField] private Projectile _bullet;
+        [SerializeField] private Transform _bulletStartPosition;
 
         void Start()
         {
@@ -44,7 +46,7 @@ namespace Tanks
                 switch (value)
                 {
                     case MoveDirection.None:
-                        _direction = Vector3.zero;
+                        _direction = Vector3.right;
                         break;
                     case MoveDirection.Up:
                         _direction = Vector3.up;
@@ -63,33 +65,38 @@ namespace Tanks
                         transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                         break;
                 }
+                _previousDirection = value;
             }
             
         }
 
-       
         void Update()
         {
             if (isMoving)
             {
-                Move();
+                Move(_direction);
                 return;
             }
             if (ButtonDown)
-                Move();
+                isMoving = true;
         }
 
-        private void Move()
+        private void Move(Vector3 direction)
         {
-            isMoving = true;
+            isMoving = true; 
             timer += Time.deltaTime * _speed;
-            transform.position = Vector3.Lerp(_tempPosition, _tempPosition + _direction, timer);
+            transform.position = Vector3.Lerp(_tempPosition, _tempPosition + direction, timer);
             if (timer >= 1)
             {
                 _tempPosition = transform.position;
                 timer = 0;
-                isMoving = false;
-                CheckDirection();
+                if(ButtonDown && _previousDirection == _currentDirection)
+                    isMoving = true;
+                else
+                {
+                    isMoving = false;
+                    CheckDirection();
+                }  
             }
         }
 
@@ -97,10 +104,17 @@ namespace Tanks
         {
             if (_previousDirection != _currentDirection)
             {
-                _previousDirection = _currentDirection;
                 OnChangeDirection(_currentDirection);
-                Move();
+                isMoving = true;
             }
+        }
+
+        public void Fire()
+        {
+            var bullet = GameObject.Instantiate(_bullet, _bulletStartPosition.position, transform.rotation);
+            var rigidBody = bullet.GetComponent<Rigidbody2D>();
+            rigidBody.AddForce(_direction * bullet.Speed, ForceMode2D.Force);
+            Destroy(bullet.gameObject, 2f);
         }
 
     }

@@ -15,12 +15,14 @@ namespace Tanks
         private SettingMenuController _settingMenuController;
         private DailyRewardController _rewardsController;
         private MapSizeConfig _mapSizeConfig;
+        private Camera _mainCamera;
 
-        public MainController(Transform placeForUi, PlayerProfile playerProfile, MapSizeConfig mapSizeConfig)
+        public MainController(Transform placeForUi, PlayerProfile playerProfile, MapSizeConfig mapSizeConfig, Camera mainCamera)
         {
             _placeForUi = placeForUi;
             _playerProfile = playerProfile;
             _mapSizeConfig = mapSizeConfig;
+            _mainCamera = mainCamera;
             OnChangeGameState(_playerProfile.CurrentGameState.Value);
             _playerProfile.CurrentGameState.SubscribeOnChange(OnChangeGameState);
         }
@@ -41,7 +43,7 @@ namespace Tanks
                     break;
                 case GameState.Game:
                     DisposeControllers();
-                    _gameController = new GameController(_placeForUi, _playerProfile, _mapSizeConfig);
+                    _gameController = new GameController(_placeForUi, _playerProfile, _mapSizeConfig, _mainCamera);
                     break;
                 case GameState.Rewards:
                     DisposeControllers();

@@ -12,10 +12,5 @@ namespace Tanks
         public Tilemap Trees { get; internal set; }
         public Tilemap Water { get; internal set; }
         public Tilemap Bricks { get; internal set; }
-
-        private void Start()
-        {
-            
-        }
     }
 }

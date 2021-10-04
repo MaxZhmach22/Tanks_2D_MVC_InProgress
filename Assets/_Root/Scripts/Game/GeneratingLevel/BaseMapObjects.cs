@@ -12,9 +12,11 @@ namespace Tanks
         private Tilemap _groundTileMap;
         private Tilemap _bordersTileMap;
         private MapSize _mapSize;
+        private Camera _mainCamera;
 
-        public BaseMapObjects(MapSizeConfig mapSizeConfig, DifficultType difficultType, Tilemap groundTileMap, Tilemap bordersTileMap)
+        public BaseMapObjects(MapSizeConfig mapSizeConfig, DifficultType difficultType, Tilemap groundTileMap, Tilemap bordersTileMap, Camera mainCamera)
         {
+            _mainCamera = mainCamera;
             _mapSizeConfig = mapSizeConfig;
             _groundTileMap = groundTileMap;
             _bordersTileMap = bordersTileMap;
@@ -30,18 +32,22 @@ namespace Tanks
                 case DifficultType.Easy:
                     map = GenerateArray(mapSizeConfig.EasyMapConfig.MapSize._width, mapSizeConfig.EasyMapConfig.MapSize._height, _isEmpty);
                     _mapSize = mapSizeConfig.EasyMapConfig.MapSize;
+                    _mainCamera.orthographicSize = 4.3f;
                     return map;
                 case DifficultType.Medium:
                     map = GenerateArray(mapSizeConfig.MediumMapConfig.MapSize._width, mapSizeConfig.MediumMapConfig.MapSize._height, _isEmpty);
                     _mapSize = mapSizeConfig.MediumMapConfig.MapSize;
+                    _mainCamera.orthographicSize = 6.5f;
                     return map;
                 case DifficultType.Hard:
                     map = GenerateArray(mapSizeConfig.HardMapConfig.MapSize._width, mapSizeConfig.HardMapConfig.MapSize._height, _isEmpty);
                     _mapSize = mapSizeConfig.HardMapConfig.MapSize;
+                    _mainCamera.orthographicSize = 8.5f;
                     return map;
                 case DifficultType.Insane:
                     map = GenerateArray(mapSizeConfig.InsaneMapConfig.MapSize._width, mapSizeConfig.InsaneMapConfig.MapSize._height, _isEmpty);
                     _mapSize = mapSizeConfig.InsaneMapConfig.MapSize;
+                    _mainCamera.orthographicSize = 10.6f;
                     return map;
                 default:
                     break;

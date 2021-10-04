@@ -10,10 +10,10 @@ namespace Tanks
 
         protected override ResourcePath ResourcePath => _viewPath;
 
-        public LevelController(PlayerProfile playerProfile, MapSizeConfig mapSizeConfig)
+        public LevelController(PlayerProfile playerProfile, MapSizeConfig mapSizeConfig, Camera mainCamera)
         {
             _view = LoadView();
-            _mapGeneratingController = new MapGeneratingCotroller(_view, playerProfile.CurrentDifficultType.Value, mapSizeConfig);
+            _mapGeneratingController = new MapGeneratingCotroller(_view, playerProfile.CurrentDifficultType.Value, mapSizeConfig, mainCamera);
             AddController(_mapGeneratingController);
         }
 
@@ -21,6 +21,12 @@ namespace Tanks
         {
             _mapGeneratingController?.Dispose();
         }
+
+        public Transform GetPlaceForPlayerRespawn()
+        {
+            return default;
+        }            
+       
 
     }
 }

@@ -7,9 +7,9 @@ namespace Tanks
         private BaseMapObjects _baseMapObjects;
         private HeadquatersTilesGenerator _headquatersObjects;
 
-        public MapGeneratingCotroller(LevelView view, DifficultType difficultType, MapSizeConfig mapSizeConfig)
+        public MapGeneratingCotroller(LevelView view, DifficultType difficultType, MapSizeConfig mapSizeConfig, Camera mainCamera)
         {
-            _baseMapObjects = new BaseMapObjects(mapSizeConfig, difficultType, view.BaseTilemap, view.BorderTilemap);
+            _baseMapObjects = new BaseMapObjects(mapSizeConfig, difficultType, view.BaseTilemap, view.BorderTilemap, mainCamera);
             _headquatersObjects = new HeadquatersTilesGenerator(view, mapSizeConfig, _baseMapObjects.GetMap());
             SetViewPositionInCenter(_baseMapObjects,view);
         }
