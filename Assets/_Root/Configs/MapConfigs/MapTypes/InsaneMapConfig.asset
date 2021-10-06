@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: InsaneMapConfig
   m_EditorClassIdentifier: 
   <MapSize>k__BackingField:
-    _width: 21
-    _height: 21
+    _width: 20
+    _height: 20

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HardMapConfig
   m_EditorClassIdentifier: 
   <MapSize>k__BackingField:
-    _width: 17
-    _height: 17
+    _width: 16
+    _height: 16

@@ -16,7 +16,8 @@ namespace Tanks
         public GameController(Transform placeForUi, PlayerProfile playerProfile, MapSizeConfig mapSizeConfig, Camera mainCamera)
         {
             _mainCamera = mainCamera;
-            _levelController = new LevelController(playerProfile, mapSizeConfig, _mainCamera);
+            _playerProfile = playerProfile;
+            _levelController = new LevelController(_playerProfile, mapSizeConfig, _mainCamera);
             _gameUiController = new GameUiController(placeForUi, _playerProfile, mapSizeConfig, _mainCamera);
             _playerController = new PlayerController(_levelController.GetPlaceForPlayerRespawn(), _playerProfile,
                                                     _gameUiController.MoveDirectionState,

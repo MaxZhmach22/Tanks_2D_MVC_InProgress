@@ -13,13 +13,15 @@ namespace Tanks
         private Tilemap _bordersTileMap;
         private MapSize _mapSize;
         private Camera _mainCamera;
+        Dictionary<Vector3Int, string> _positionsOfObjects;
 
-        public BaseMapObjects(MapSizeConfig mapSizeConfig, DifficultType difficultType, Tilemap groundTileMap, Tilemap bordersTileMap, Camera mainCamera)
+        public BaseMapObjects(MapSizeConfig mapSizeConfig, DifficultType difficultType, Tilemap groundTileMap, Tilemap bordersTileMap, Camera mainCamera, Dictionary<Vector3Int, string> positionsOfObjects)
         {
             _mainCamera = mainCamera;
             _mapSizeConfig = mapSizeConfig;
             _groundTileMap = groundTileMap;
             _bordersTileMap = bordersTileMap;
+            _positionsOfObjects = positionsOfObjects;
             _map = GeneretaeMap(difficultType, _mapSizeConfig);
             RenderMap(_map, _groundTileMap, _bordersTileMap, _mapSize);
         }
@@ -58,9 +60,9 @@ namespace Tanks
         private int[,] GenerateArray(int width, int height, bool empty)
         {
             int[,] map = new int[width, height];
-            for (int x = 0; x < map.GetUpperBound(0); x++)
+            for (int x = map.GetLowerBound(0); x <= map.GetUpperBound(0); x++)
             {
-                for (int y = 0; y < map.GetUpperBound(1); y++)
+                for (int y = map.GetLowerBound(1); y <= map.GetUpperBound(1); y++)
                 {
                     if (empty)
                         map[x, y] = 0;
@@ -73,15 +75,24 @@ namespace Tanks
 
         private void RenderMap(int[,] map, Tilemap baseTilemap, Tilemap borderTilemap, MapSize mapSize)
         {
-            for (int x = 0; x < map.GetUpperBound(0); x++)
+            Vector3Int tilePosition;
+            for (int x = 0; x <= map.GetUpperBound(0); x++)
             {
-                for (int y = 0; y < map.GetUpperBound(1); y++)
+                for (int y = 0; y <= map.GetUpperBound(1); y++)
                 {
-                    if (x == 0 || y == 0)
+
+                    if (x == 0 || x == map.GetUpperBound(0))
                     {
-                        borderTilemap.SetTile(new Vector3Int(x, y, 0), RandomTile(_mapSizeConfig.BorderTiles));
-                        borderTilemap.SetTile(new Vector3Int(map.GetUpperBound(0) - 1, y, 0), RandomTile(_mapSizeConfig.BorderTiles));
-                        borderTilemap.SetTile(new Vector3Int(x, map.GetUpperBound(1) - 1, 0), RandomTile(_mapSizeConfig.BorderTiles));
+                        var randomTile = RandomTile(_mapSizeConfig.BorderTiles);
+                        borderTilemap.SetTile(tilePosition = new Vector3Int(x, y, 0), randomTile);
+                        _positionsOfObjects.Add(tilePosition, randomTile.name);
+                        continue;
+                    }
+                    if (y == 0 || y == map.GetUpperBound(1))
+                    {
+                        var randomTile = RandomTile(_mapSizeConfig.BorderTiles);
+                        borderTilemap.SetTile(tilePosition = new Vector3Int(x, y, 0), randomTile);
+                        _positionsOfObjects.Add(tilePosition, randomTile.name);
                     }
                     else
                         baseTilemap.SetTile(new Vector3Int(x, y, 0), RandomTile(_mapSizeConfig.GroundTiles));

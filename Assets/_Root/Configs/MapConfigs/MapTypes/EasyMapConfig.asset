@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EasyMapConfig
   m_EditorClassIdentifier: 
   <MapSize>k__BackingField:
-    _width: 9
-    _height: 9
+    _width: 8
+    _height: 8
