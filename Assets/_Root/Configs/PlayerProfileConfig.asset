@@ -17,4 +17,4 @@ MonoBehaviour:
     Defense: 100
   <TankType>k__BackingField: 0
   <GameState>k__BackingField: 1
-  <DifficultType>k__BackingField: 2
+  <DifficultType>k__BackingField: 3

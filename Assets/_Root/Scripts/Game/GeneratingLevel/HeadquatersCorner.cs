@@ -3,8 +3,8 @@
     internal enum HeadquatersCorner
     {
         LeftUpCorner,
-        LeftDownCorner,
-        RightUpCorner,
         RightDownCorner,
+        LeftDownCorner,
+        RightUpCorner
     }
 }

@@ -9,8 +9,10 @@ namespace Tanks
 
         [field: SerializeField] public Tilemap BorderTilemap { get; private set; }
         [field: SerializeField] public Tilemap Headquarters { get; private set; }
-        public Tilemap Trees { get; internal set; }
-        public Tilemap Water { get; internal set; }
-        public Tilemap Bricks { get; internal set; }
+        [field: SerializeField] public Tilemap Spawns { get; private set; }
+        [field: SerializeField] public Tilemap Walls { get; private set; }
+        [field: SerializeField] public Tilemap Water { get; private set; }
+        [field: SerializeField] public Tilemap Decorations { get; private set; }
+
     }
 }

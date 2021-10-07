@@ -20,8 +20,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c40b226911bf2e446bae03d3ccdf8657, type: 2}
   - {fileID: 11400000, guid: e6d420d25ce638d4ab70857658ea6564, type: 2}
   - {fileID: 11400000, guid: d6341f58ce0edcc45bc31e3733d7cb36, type: 2}
-  <BorderTiles>k__BackingField:
-  - {fileID: 11400000, guid: b8c4198be9367574a9ff5a2e02570cbe, type: 2}
+  <OldSpawnsTile>k__BackingField: {fileID: 11400000, guid: 2a71ff3eb8d86ac4fabaa979927b70a9, type: 2}
+  <WallsTile>k__BackingField: {fileID: 11400000, guid: a95936a33b291104a8790515c3b93e3e, type: 2}
+  <BordersTile>k__BackingField: {fileID: 11400000, guid: b8c4198be9367574a9ff5a2e02570cbe, type: 2}
   <HeadquatersTiles>k__BackingField:
   - {fileID: 11400000, guid: a1a207d466311c44fa2b1a06543f237b, type: 2}
   - {fileID: 11400000, guid: 22ffeb618c7472740a96637480d38310, type: 2}
+  <PlayerSpawnTiles>k__BackingField: {fileID: 11400000, guid: 7393fa9660e5d3047ac2ccf300596c9a, type: 2}
+  <EnemiesSpawnTiles>k__BackingField: {fileID: 11400000, guid: cae85334c5f52ed44be9004e0392c8c1, type: 2}
